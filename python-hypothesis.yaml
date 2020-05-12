@@ -1,0 +1,4 @@
+version_control: github
+src_repo: HypothesisWorks/hypothesis
+tag_prefix: hypothesis-python-
+seperator: .
