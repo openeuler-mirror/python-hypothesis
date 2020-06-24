@@ -1,12 +1,13 @@
 %{?python_enable_dependency_generator}
 Name:           python-hypothesis
 Version:        3.66.11
-Release:        2
+Release:        3
 Summary:        based testing for python code
 License:        MPLv2.0
 URL:            https://github.com/HypothesisWorks/hypothesis-python
 Source0:        %{url}/archive/hypothesis-python-%{version}/hypothesis-%{version}.tar.gz
-Patch0:         hypothesis-3.12.0-offline.patch
+Patch0000:      hypothesis-3.12.0-offline.patch
+Patch0001:      hypothesis-Add-support-for-positional-only-arguments.patch
 BuildRequires:  python-sphinx
 BuildArch:      noarch
 
@@ -72,5 +73,8 @@ PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 %{python3_sitelib}/hypothesis/
 
 %changelog
+* Wed Jun 24 2020 lingsheng<lingsheng@huawei.com> - 3.66.11-3
+- Add support for positional only arguments
+
 * Thu Nov 28 2019 likexin<likexin4@huawei.com> - 3.66.11-2
 - Package init
