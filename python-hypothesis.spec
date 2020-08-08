@@ -1,13 +1,11 @@
 %{?python_enable_dependency_generator}
 Name:           python-hypothesis
-Version:        3.66.11
-Release:        3
+Version:        5.20.3
+Release:        1
 Summary:        based testing for python code
 License:        MPLv2.0
 URL:            https://github.com/HypothesisWorks/hypothesis-python
-Source0:        %{url}/archive/hypothesis-python-%{version}/hypothesis-%{version}.tar.gz
-Patch0000:      hypothesis-3.12.0-offline.patch
-Patch0001:      hypothesis-Add-support-for-positional-only-arguments.patch
+Source0:        https://github.com/HypothesisWorks/hypothesis/archive/hypothesis-python-%{version}.tar.gz
 BuildRequires:  python-sphinx
 BuildArch:      noarch
 
@@ -16,16 +14,6 @@ This package provides a library called hypothesis for testing Python code,
 which has more examples and is based on the Haskell library, Quickcheck,
 which is used to integrate directly into your existing Python unit testing work.
 
-%package     -n python2-hypothesis
-Summary:        based testing for python code
-%{?python_provide:%python_provide python2-hypothesis}
-BuildRequires:  python2-devel python2-setuptools python2dist(attrs)
-
-%description -n python2-hypothesis
-This package provides a library called hypothesis for testing Python code,
-which has more examples and is based on the Haskell library, Quickcheck,
-which is used to integrate directly into your existing Python unit testing work.
-Python 2 version.
 
 %package     -n python3-hypothesis
 Summary:        based testing for python code
@@ -49,12 +37,10 @@ Help document for the python-hypothesis
 %autosetup -n hypothesis-hypothesis-python-%{version}/hypothesis-python -p1
 
 %build
-%py2_build
 %py3_build
 PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 
 %install
-%py2_install
 %py3_install
 %{__install} -Dpm0644 -t %{buildroot}%{_mandir}/man1 docs/_build/man/hypothesis.1
 
@@ -62,17 +48,15 @@ PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 %{_mandir}/man1/hypothesis.1*
 %doc README.rst
 
-%files -n python2-hypothesis
-%doc ../LICENSE.txt
-%{python2_sitelib}/hypothesis-*.egg-info/
-%{python2_sitelib}/hypothesis/
-
 %files -n python3-hypothesis
 %doc ../LICENSE.txt
 %{python3_sitelib}/hypothesis-*.egg-info
 %{python3_sitelib}/hypothesis/
 
 %changelog
+* Sat Aug 8 2020 tianwei<tianwei12@huawei.com> - 5.20.3-1
+- update release to 5.20.3
+
 * Wed Jun 24 2020 lingsheng<lingsheng@huawei.com> - 3.66.11-3
 - Add support for positional only arguments
 
