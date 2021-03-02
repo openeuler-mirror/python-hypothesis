@@ -1,7 +1,7 @@
 %{?python_enable_dependency_generator}
 Name:           python-hypothesis
 Version:        5.20.3
-Release:        1
+Release:        2
 Summary:        based testing for python code
 License:        MPLv2.0
 URL:            https://github.com/HypothesisWorks/hypothesis-python
@@ -35,6 +35,7 @@ Help document for the python-hypothesis
 
 %prep
 %autosetup -n hypothesis-hypothesis-python-%{version}/hypothesis-python -p1
+sed -i -e '/sphinx.ext.intersphinx/d' docs/conf.py
 
 %build
 %py3_build
@@ -54,6 +55,9 @@ PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 %{python3_sitelib}/hypothesis/
 
 %changelog
+* Tue Mar 2 2021 lingsheng<lingsheng@huawei.com> - 5.20.3-2
+- Disable Sphinx extensions that require Internet access
+
 * Sat Aug 8 2020 tianwei<tianwei12@huawei.com> - 5.20.3-1
 - update release to 5.20.3
 
