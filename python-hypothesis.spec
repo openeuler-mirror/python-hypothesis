@@ -1,12 +1,11 @@
 %{?python_enable_dependency_generator}
 Name:           python-hypothesis
-Version:        3.66.11
-Release:        2
+Version:        4.57.1
+Release:        1
 Summary:        based testing for python code
 License:        MPLv2.0
 URL:            https://github.com/HypothesisWorks/hypothesis-python
-Source0:        %{url}/archive/hypothesis-python-%{version}/hypothesis-%{version}.tar.gz
-Patch0:         hypothesis-3.12.0-offline.patch
+Source0:        https://github.com/HypothesisWorks/hypothesis/archive/hypothesis-python-%{version}.tar.gz
 BuildRequires:  python-sphinx
 BuildArch:      noarch
 
@@ -46,6 +45,7 @@ Help document for the python-hypothesis
 
 %prep
 %autosetup -n hypothesis-hypothesis-python-%{version}/hypothesis-python -p1
+sed -i -e '/sphinx.ext.intersphinx/d' docs/conf.py
 
 %build
 %py2_build
@@ -72,5 +72,8 @@ PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 %{python3_sitelib}/hypothesis/
 
 %changelog
+* Mon Aug 16 2021 liyanan <liyanan32@huawei.com> - 4.57.1-1
+- update to 4.57.1
+
 * Thu Nov 28 2019 likexin<likexin4@huawei.com> - 3.66.11-2
 - Package init
