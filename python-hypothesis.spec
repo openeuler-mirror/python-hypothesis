@@ -1,7 +1,7 @@
 %{?python_enable_dependency_generator}
 Name:           python-hypothesis
 Version:        4.57.1
-Release:        1
+Release:        2
 Summary:        based testing for python code
 License:        MPLv2.0
 URL:            https://github.com/HypothesisWorks/hypothesis-python
@@ -13,17 +13,6 @@ BuildArch:      noarch
 This package provides a library called hypothesis for testing Python code,
 which has more examples and is based on the Haskell library, Quickcheck,
 which is used to integrate directly into your existing Python unit testing work.
-
-%package     -n python2-hypothesis
-Summary:        based testing for python code
-%{?python_provide:%python_provide python2-hypothesis}
-BuildRequires:  python2-devel python2-setuptools python2dist(attrs)
-
-%description -n python2-hypothesis
-This package provides a library called hypothesis for testing Python code,
-which has more examples and is based on the Haskell library, Quickcheck,
-which is used to integrate directly into your existing Python unit testing work.
-Python 2 version.
 
 %package     -n python3-hypothesis
 Summary:        based testing for python code
@@ -48,12 +37,10 @@ Help document for the python-hypothesis
 sed -i -e '/sphinx.ext.intersphinx/d' docs/conf.py
 
 %build
-%py2_build
 %py3_build
 PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 
 %install
-%py2_install
 %py3_install
 %{__install} -Dpm0644 -t %{buildroot}%{_mandir}/man1 docs/_build/man/hypothesis.1
 
@@ -61,17 +48,15 @@ PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 %{_mandir}/man1/hypothesis.1*
 %doc README.rst
 
-%files -n python2-hypothesis
-%doc ../LICENSE.txt
-%{python2_sitelib}/hypothesis-*.egg-info/
-%{python2_sitelib}/hypothesis/
-
 %files -n python3-hypothesis
 %doc ../LICENSE.txt
 %{python3_sitelib}/hypothesis-*.egg-info
 %{python3_sitelib}/hypothesis/
 
 %changelog
+* Thur Jan 27 2022 lijiawei <ljw1101.vip@gmail.com> - 4.57.1-2
+- Remove python2 support
+
 * Mon Aug 16 2021 liyanan <liyanan32@huawei.com> - 4.57.1-1
 - update to 4.57.1
 
