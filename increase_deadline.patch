@@ -1,0 +1,11 @@
+--- a/src/hypothesis/core.py	2020-07-21 20:42:14.000000000 +0800
++++ b/src/hypothesis/core.py	2022-04-15 15:10:18.083403900 +0800
+@@ -532,7 +532,7 @@
+                     seconds=finish - start - internal_draw_time
+                 )
+                 self.__test_runtime = runtime
+-                current_deadline = self.settings.deadline
++                current_deadline = self.settings.deadline * 10
+                 if not is_final:
+                     current_deadline = (current_deadline // 4) * 5
+                 if runtime >= current_deadline:

@@ -1,11 +1,12 @@
 %{?python_enable_dependency_generator}
 Name:           python-hypothesis
 Version:        5.20.3
-Release:        2
+Release:        3
 Summary:        based testing for python code
 License:        MPLv2.0
 URL:            https://github.com/HypothesisWorks/hypothesis-python
 Source0:        https://github.com/HypothesisWorks/hypothesis/archive/hypothesis-python-%{version}.tar.gz
+Patch01:        increase_deadline.patch
 BuildRequires:  python-sphinx
 BuildArch:      noarch
 
@@ -55,6 +56,9 @@ PYTHONPATH=src READTHEDOCS=True sphinx-build -b man docs docs/_build/man
 %{python3_sitelib}/hypothesis/
 
 %changelog
+* Sun Apr 24 2022 lvxiaoqian<xiaoqian@nj.iscas.ac.cn> - 5.20.3-3
+- increase test deadline
+
 * Tue Mar 2 2021 lingsheng<lingsheng@huawei.com> - 5.20.3-2
 - Disable Sphinx extensions that require Internet access
 
